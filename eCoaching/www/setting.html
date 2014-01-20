@@ -26,7 +26,7 @@
     <body>
 <div data-role="page" id="page">
  <script type="text/javascript" charset="utf-8">
-alert("er");
+
     // Wait for PhoneGap to load
     //
 var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
@@ -60,7 +60,6 @@ var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
     // Transaction error callback
     //
     function errorCB(err) {
-    alert("Success1");
     }
 
 
@@ -68,7 +67,6 @@ var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
     // Transaction success callback
     //
     function successCB() {
-   alert("Success");   
     }
 
     function updateEmail() {
