@@ -32,7 +32,7 @@
         console.log("DEMO table: " + len + " rows found.");
         for (var i=0; i<len; i++){
             console.log("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
-			alert(results.rows.item(i).id);
+			
         }
 		
     }
@@ -40,7 +40,7 @@
     // Transaction error callback
     //
     function errorCB(err) {
-        console.log("Error processing SQL: "+err.code);
+        alert("Error processing SQL: "+err.code);
     }
 
     // Transaction success callback
@@ -54,6 +54,7 @@
     //
     function onDeviceReady() {
         var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
+		 document.querySelector('#status').innerHTML +="<p>dsdsd</p>";
         db.transaction(populateDB, errorCB, successCB);
     }
 
@@ -62,6 +63,7 @@
   <body>
     <h1>Example</h1>
     <p>Database</p>
+    <div id="status" name="status">Status Message</div>
     <a href="log.html">ghghgh</a>
   </body>
 </html>
