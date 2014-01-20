@@ -22,60 +22,60 @@
 
 
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-    <script type="text/javascript" charset="utf-8">
+      <script type="text/javascript" charset="utf-8">
 
     // Wait for PhoneGap to load
     //
-    document.addEventListener("deviceready", onDeviceReady, false);
+var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
+		
+        db.transaction(populateDB, errorCB, successCB);
 
-    // Populate the database 
-    //
     function populateDB(tx) {
-     
-  tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
-    }
+   tx.executeSql('SELECT * FROM Email', [], querySuccess, errorCB);
 
-    // Query the database
-    //
-    function queryDB(tx) {
-        tx.executeSql('SELECT * FROM DEMO', [], querySuccess, errorCB);
-    }
+	}
+
+ function updateDB(tx) {
+     var bla = $('#txtEmail').val();
+	
+  tx.executeSql('UPDATE Email SET data = "'+bla+'" where id = 1');
+ alert("Email has been updated");
+	}
+
+   
 
     // Query the success callback
     //
     function querySuccess(tx, results) {
         var len = results.rows.length;
-        console.log("DEMO table: " + len + " rows found.");
-        for (var i=0; i<len; i++){
-            console.log("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
-			alert(results.rows.item(i).id);
-        }
+       if(len>0){
+		 $('#txtEmail').val(results.rows.item(0).data);
+		   }
 		
     }
 
     // Transaction error callback
     //
     function errorCB(err) {
-        console.log("Error processing SQL: "+err.code);
+    alert("Success1");
     }
+
+
 
     // Transaction success callback
     //
     function successCB() {
-        var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
-        db.transaction(queryDB, errorCB);
+      
     }
 
+    function updateEmail() {
+        db.transaction(updateDB, errorCB, successCB);
+
+    }
     // PhoneGap is ready
     //
-    function onDeviceReady() {
-        var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
-       
-    }
-	
-	function updateEmail(){
-		 db.transaction(populateDB, errorCB, successCB);
-		}
+  
+   
 
     </script>
     </head>
@@ -89,7 +89,7 @@
       <label for="email">Email:</label>
       <input type="email" name="txtEmail" id="txtEmail" value=""  />
     </div>
-    <button>Save</button>
+    <button onclick="updateEmail()">Update</button>
     
   </div>
 
