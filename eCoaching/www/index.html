@@ -13,7 +13,7 @@
     // Populate the database 
     //
     function populateDB(tx) {
-        tx.executeSql('DROP TABLE IF EXISTS DEMO');
+     
         tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
         tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
         tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
@@ -32,7 +32,9 @@
         console.log("DEMO table: " + len + " rows found.");
         for (var i=0; i<len; i++){
             console.log("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
+			alert(results.rows.item(i).id);
         }
+		
     }
 
     // Transaction error callback
@@ -60,5 +62,6 @@
   <body>
     <h1>Example</h1>
     <p>Database</p>
+    <a href="log.html"></a>
   </body>
 </html>
