@@ -16,31 +16,31 @@
 
     // Wait for PhoneGap to load
     //
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    // Populate the database 
-    //
+	 var db;
+  document.addEventListener("deviceready", onDeviceReady, false);
     function populateDB(tx) {
      
    tx.executeSql('CREATE TABLE IF NOT EXISTS Email (id unique, data)');
- 
+   tx.executeSql('SELECT * FROM Email', [], querySuccess, errorCB);
+	  document.querySelector('#status').innerHTML +="<p>dsdsd</p>";
 	}
 
-    // Query the database
-    //
-    function queryDB(tx) {
-        tx.executeSql('SELECT * FROM DEMO', [], querySuccess, errorCB);
-    }
+ function insertDB(tx) {
+     var bla = $('#txtEmail').val();
+	 alert(bla);
+  tx.executeSql('INSERT INTO Email (id, data) VALUES (1, "'+bla+'")');
+  window.location.href ="log.html";
+	}
+
+   
 
     // Query the success callback
     //
     function querySuccess(tx, results) {
         var len = results.rows.length;
-        console.log("DEMO table: " + len + " rows found.");
-        for (var i=0; i<len; i++){
-            console.log("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
-			
-        }
+       if(len>0){
+		   window.location.href ="log.html";
+		   }
 		
     }
 
@@ -53,17 +53,21 @@
     // Transaction success callback
     //
     function successCB() {
-        alert("Success processing SQL: "+err.code);
+        alert("Success processing SQL: ");
 
     }
 
+    function insertEmail() {
+        db.transaction(insertDB, errorCB, successCB);
+
+    }
     // PhoneGap is ready
     //
     function onDeviceReady() {
-        var db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
+       db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
 		
         db.transaction(populateDB, errorCB, successCB);
-     document.querySelector('#status').innerHTML +="<p>dsdsd</p>";
+   
 	}
 
     </script>
@@ -78,7 +82,7 @@
       <label for="email">Email:</label>
       <input type="email" name="txtEmail" id="txtEmail" value=""  />
     </div>
-    <button>Save</button>
+    <button onclick="insertEmail()">Save</button>
     
   </div>
 
