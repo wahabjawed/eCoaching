@@ -27,7 +27,7 @@
      var bla = $('#txtEmail').val();
 	
   tx.executeSql('INSERT INTO Email (id, data) VALUES (1, "'+bla+'")');
-$.mobile.changePage("log.html");
+  window.location.href ="log.html";
 	}
 
    
@@ -37,7 +37,7 @@ $.mobile.changePage("log.html");
     function querySuccess(tx, results) {
         var len = results.rows.length;
        if(len>0){
-		  $.mobile.changePage("log.html");
+		   window.location.href ="log.html";
 		   }
 		
     }
