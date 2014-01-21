@@ -70,8 +70,12 @@ var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
     }
 
     function updateEmail() {
+		 var bla = $('#txtEmail').val();
+		if(bla!=""){
         db.transaction(updateDB, errorCB, successCB);
-
+		}else{
+			alert("Not a valid Email");
+			}
     }
     // PhoneGap is ready
     //

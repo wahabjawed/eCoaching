@@ -26,7 +26,9 @@
 
 
  <script type="text/javascript" charset="utf-8">
-var email;
+
+
+var emails;
     // Wait for PhoneGap to load
     //
 var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
@@ -42,8 +44,8 @@ var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
     function querySuccess(tx, results) {
         var len = results.rows.length;
        if(len>0){
-		 email=(results.rows.item(0).data);
-		 alert(email);
+		 emails=(results.rows.item(0).data);
+		
 		   }
 		
     }
@@ -58,7 +60,44 @@ var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
     function successCB() {
     }
 
+function sendEmail(){
+	var dateT= $('#txtDate').val();
+	var stepT= $('#txtStep').val();
+	var commentT= $('#textMsg').val();
 
+	if(dateT!=""){
+	
+	$.ajax({
+  type: "POST",
+  url: "http://207.45.190.206/~lolism/wahab/send_form_email.php",
+  data: { emailt: ""+emails, datet: ""+dateT ,steps: ""+stepT,comments: ""+commentT }
+})
+   .done(function() {
+    alert( "success" );
+  })
+  .fail(function() {
+    alert( "error" );
+  })
+  .always(function() {
+    alert( "complete" );
+  });
+ 
+	
+		}else{
+			var msg="Kindly fill the following fields:\n";
+			if(dateT==""){
+				msg=msg+"Reporting Day\n";
+				}
+			if(!stepT){
+				msg=msg+"Your Steps\n";
+				}
+				
+			alert(msg);
+			
+			}
+	
+	
+	}
    
     </script>
 
@@ -74,12 +113,12 @@ var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
       <input type="date" name="txtDate" id="txtDate" value=""  />
     <p></p>
       <label for="textinput">Please Enter Your Steps:</label>
-      <textarea cols="40" rows="8" name="txtStep" id="txtStep"> </textarea>
+      <textarea cols="40" rows="8" name="txtStep" id="txtStep" value=""> </textarea>
   <p></p>
       <label for="textarea">Message Box:</label>
       <textarea cols="40" rows="8" name="textMsg" id="textMsg"></textarea>
     </div>
-    <input type="button" value="Submit" />
+    <input type="button" value="Submit" onclick="sendEmail()" />
     
     
   </div>
