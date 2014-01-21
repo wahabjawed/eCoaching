@@ -62,10 +62,10 @@ var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
 
 function sendEmail(){
 	var dateT= $('#txtDate').val();
-	var stepT= $('#txtStep').val();
+	var stepT= $.trim($('#txtStep').val());
 	var commentT= $('#textMsg').val();
 
-	if(dateT!=""){
+	if(dateT!="" && stepT.length>0){
 	
 	$.ajax({
   type: "POST",
@@ -88,7 +88,7 @@ function sendEmail(){
 			if(dateT==""){
 				msg=msg+"Reporting Day\n";
 				}
-			if(!stepT){
+			if(stepT.length==0){
 				msg=msg+"Your Steps\n";
 				}
 				
