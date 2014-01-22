@@ -11,8 +11,7 @@
    
     <link href="jquery.mobile-1.4.0/jquery.mobile.theme-1.4.0.css" rel="stylesheet" type="text/css">
     <link href="jquery.mobile-1.4.0/jquery.mobile.structure-1.4.0.css" rel="stylesheet" type="text/css">
-    <script src="jquery.mobile-1.4.0/jquery-1.9.1.js" type="text/javascript"></script>
-    <script src="jquery.mobile-1.4.0/jquery.mobile-1.4.0.js" type="text/javascript"></script>
+
    <style>
    .nav-glyphish-example .ui-btn { padding-top: 40px !important; }
 .nav-glyphish-example .ui-btn:after { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
@@ -23,7 +22,8 @@
     </head>
     <body>
 <div data-role="page" id="page">
-
+    <script src="jquery.mobile-1.4.0/jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="jquery.mobile-1.4.0/jquery.mobile-1.4.0.js" type="text/javascript"></script>
 
  <script type="text/javascript" charset="utf-8">
 
@@ -73,13 +73,23 @@ function sendEmail(){
   data: { emailt: ""+emails, datet: ""+dateT ,steps: ""+stepT,comments: ""+commentT }
 })
    .done(function() {
-    alert( "success" );
+   // alert( "success" );
   })
   .fail(function() {
-    alert( "error" );
+ //   alert( "error" );
   })
   .always(function() {
-    alert( "complete" );
+    var c = confirm("Nice Job, Keep stepping and reporting to your coach. Would you like to log activity for another day?");
+	
+	if(c==true){
+			$('#txtDate').val("");
+	$('#txtStep').val("");
+	$('#textMsg').val("");
+		}else{
+			alert("Don’t forget to report your activity tomorrow");
+			}
+	
+	
   });
  
 	
