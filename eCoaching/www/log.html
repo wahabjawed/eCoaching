@@ -68,7 +68,7 @@ function sendEmail(){
 	var stepT= $.trim($('#txtStep').val());
 	var commentT= $('#textMsg').val();
 
-	if(dateT!="" && stepT.length>0){
+	if(dateT!="" && stepT!=""){
 	
 	$.ajax({
   type: "POST",
@@ -101,7 +101,7 @@ function sendEmail(){
 			if(dateT==""){
 				msg=msg+"Reporting Day\n";
 				}
-			if(stepT.length==0){
+			if(stepT==""){
 				msg=msg+"Your Steps\n";
 				}
 				
@@ -127,8 +127,8 @@ function sendEmail(){
 </div>
    <div data-role="fieldcontain">
       <label for="textinput">Please Enter Your Steps:</label>
-      <textarea cols="40" rows="8" name="txtStep" id="txtStep" value=""> </textarea>
-</div>
+     <input type="number" pattern="[0-9]*" name="txtStep" id="txtStep" value=""  />
+     </div>
    <div data-role="fieldcontain">
       <label for="textarea">Message Box:</label>
       <textarea cols="40" rows="8" name="textMsg" id="textMsg"></textarea>
