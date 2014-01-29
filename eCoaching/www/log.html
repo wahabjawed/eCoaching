@@ -100,14 +100,10 @@ if(dateT!="" && stepT!=""){
  //   alert( "error" );
   })
   .always(function() {
-    var c = confirm("Nice Job, Keep stepping and reporting to your coach.    Would you like to log activity for another day?");
+  
+  $('#confirm').click();
 	
-	if(c==true){
-
-	}else{
-			alert("Don’t forget to report your activity tomorrow");
-	}
-	$('#txtDate').val("");
+ 	$('#txtDate').val("");
 	$('#txtStep').val("");
 	$('#textMsg').val("");
 	
@@ -134,6 +130,12 @@ if(dateT!="" && stepT!=""){
 	
 	
 	}
+   
+  function alertB(){
+
+$('#alertbb').click();
+	
+	   }
    
     </script>
   <div data-role="header">
@@ -165,6 +167,40 @@ if(dateT!="" && stepT!=""){
       </ul>
     </div>
   </div>
+  
+<div style="display:none">
+
+<a id="confirm" href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-b"></a>
+ 
+<a id="alertbb" href="#alertb" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-b"></a>
+
+</div>  
+  
+  <div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+    <div data-role="header" data-theme="a">
+    <h1>eCoaching</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <h3 class="ui-title">Nice Job, Keep stepping and reporting to your coach. Would you like to log activity for another day?</h3>
+
+        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Yes</a>
+        <a href="#alertb" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-position-to="window" data-transition="pop" >No</a>
+    </div>
+</div>
+
+
+ <div data-role="popup" id="alertb" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+    <div data-role="header" data-theme="a">
+    <h1>eCoaching</h1>
+    </div>
+    <div role="main" class="ui-content">
+        <h3 class="ui-title">Don’t forget to report your activity tomorrow</h3>
+
+        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" >OK</a>
+    </div>
+
+</div>
+
 </div>
 <script type="text/javascript" src="phonegap.js"></script>
 </body>
