@@ -24,9 +24,9 @@
 	}
 
  function insertDB(tx) {
-     var bla = $('#txtEmail').val();
+     var blas = $('#txtEmail').val();
 	
-  tx.executeSql('INSERT INTO Email (id, data) VALUES (1, "'+bla+'")');
+  tx.executeSql('INSERT INTO Email (id, data) VALUES (1, "'+blas+'")');
   window.location.href ="log.html";
 	}
 
@@ -51,7 +51,7 @@
     // Transaction success callback
     //
     function successCB() {
-        
+          
     }
 
     function insertEmail() {
