@@ -47,22 +47,24 @@ var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
         db.transaction(populateDB, errorCB, successCB);
 
     function populateDB(tx) {
-   tx.executeSql('SELECT * FROM Email', [], querySuccess, errorCB);
+		
+   tx.executeSql('SELECT * FROM Email', [], querySuccessw, errorCB);
 
 	}
 
-   //
-    function querySuccess(tx, results) {
-        var len = results.rows.length;
+   
+    function querySuccessw(tx, results) {
+    
+		var len = results.rows.length;
        if(len>0){
 		 emails=(results.rows.item(0).data);
 		 alert(emails);
 		
 		   }
-		
-    }
+	}
 
     function errorCB(err) {
+		
     }
 
 
@@ -70,7 +72,8 @@ var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
     // Transaction success callback
     //
     function successCB() {
-    }
+  
+	}
 
     function sendEmail(){
 	

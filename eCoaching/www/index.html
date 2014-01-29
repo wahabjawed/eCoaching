@@ -24,9 +24,9 @@
 	}
 
  function insertDB(tx) {
-     var blas = $('#txtEmail').val();
+     var bla = $('#txtEmail').val();
 	
-  tx.executeSql('INSERT INTO Email (id, data) VALUES (1, "'+blas+'")');
+  tx.executeSql('INSERT INTO Email (id, data) VALUES (1, "'+bla+'")');
   window.location.href ="log.html";
 	}
 
@@ -51,7 +51,7 @@
     // Transaction success callback
     //
     function successCB() {
-          
+        
     }
 
     function insertEmail() {
@@ -60,7 +60,7 @@
     }
     // PhoneGap is ready
     //
-    function onDeviceReady() {
+  function onDeviceReady() {
        db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
 		
         db.transaction(populateDB, errorCB, successCB);
