@@ -1,34 +1,42 @@
 <!DOCTYPE html>
 
-
 <html>
-    <head>
-    <title>eCoaching</title>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-
-
-   
-    <link href="jquery.mobile-1.4.0/jquery.mobile.theme-1.4.0.css" rel="stylesheet" type="text/css">
-    <link href="jquery.mobile-1.4.0/jquery.mobile.structure-1.4.0.css" rel="stylesheet" type="text/css">
-
-   <style>
-   .nav-glyphish-example .ui-btn { padding-top: 40px !important; }
-.nav-glyphish-example .ui-btn:after { width: 30px!important; height: 30px!important; margin-left: -15px !important; box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; -webkit-border-radius: 0 !important; border-radius: 0 !important; }
-#log:after { background:  url(img/log.png) 50% 50% no-repeat; background-size: 28px 24px; }
-#setting:after { background:  url(img/setting.png) 50% 50% no-repeat; background-size: 28px 28px;  }
-
-
-
+<head>
+<title>eCoaching</title>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+<link href="jquery.mobile-1.4.0/jquery.mobile.theme-1.4.0.css" rel="stylesheet" type="text/css">
+<link href="jquery.mobile-1.4.0/jquery.mobile.structure-1.4.0.css" rel="stylesheet" type="text/css">
+<style>
+.nav-glyphish-example .ui-btn {
+	padding-top: 40px !important;
+}
+.nav-glyphish-example .ui-btn:after {
+	width: 30px!important;
+	height: 30px!important;
+	margin-left: -15px !important;
+	box-shadow: none!important;
+	-moz-box-shadow: none!important;
+	-webkit-box-shadow: none!important;
+	-webkit-border-radius: 0 !important;
+	border-radius: 0 !important;
+}
+#log:after {
+	background: url(img/log.png) 50% 50% no-repeat;
+	background-size: 28px 24px;
+}
+#setting:after {
+	background: url(img/setting.png) 50% 50% no-repeat;
+	background-size: 28px 28px;
+}
 </style>
-    </head>
-    <body>
-<div data-role="page" id="page">
-    <script src="jquery.mobile-1.4.0/jquery-1.9.1.js" type="text/javascript"></script>
-    <script src="jquery.mobile-1.4.0/jquery.mobile-1.4.0.js" type="text/javascript"></script>
-
- <script type="text/javascript" charset="utf-8">
+</head>
+<body>
+<div data-role="page" id="page"> 
+  <script src="jquery.mobile-1.4.0/jquery-1.9.1.js" type="text/javascript"></script> 
+  <script src="jquery.mobile-1.4.0/jquery.mobile-1.4.0.js" type="text/javascript"></script> 
+  <script type="text/javascript" charset="utf-8">
 $('#txtStep').css('background-color', 'white').css('font-size', '18px').css('height', '7em').css('width', 'auto');
 
 var emails;
@@ -63,31 +71,28 @@ var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
     function successCB() {
     }
 
-function sendEmail(){
+    function sendEmail(){
+	
+	
 	var dateT= $('#txtDate').val();
 	var stepT= $.trim($('#txtStep').val());
 	var commentT= $('#textMsg').val();
 
 	
+if(dateT!="" && stepT!=""){
+    var da = new Date();
+	var mon=da.getMonth()+1;
+	var yearss=da.getFullYear();
+	var dayss=da.getDate();
+	var dumD=dateT.split('-');
 	
-	
-	
-	if(dateT!="" && stepT!=""){
-	
-	var da = new Date();
-	var mon=da.getMonth();
-	var year=da.getFullYear();
-	var day=da.getDate();
-	var dumD=dataT.split("-");
-	
-	if(dumD[0]<=year && dumD[1]<=mon && dumD[2]<=day){
-	
-	
-	$.ajax({
+	if(dumD[0]<=yearss && dumD[1]<=mon && dumD[2]<=dayss){
+
+  $.ajax({
   type: "POST",
   url: "http://207.45.190.206/~lolism/wahab/send_form_email.php",
   data: { emailt: ""+emails, datet: ""+dateT ,steps: ""+stepT,comments: ""+commentT }
-})
+  })
    .done(function() {
    // alert( "success" );
   })
@@ -95,26 +100,26 @@ function sendEmail(){
  //   alert( "error" );
   })
   .always(function() {
-    var c = confirm("Nice Job, Keep stepping and reporting to your coach. Would you like to log activity for another day?");
+    var c = confirm("Nice Job, Keep stepping and reporting to your coach.    Would you like to log activity for another day?");
 	
 	if(c==true){
 
-		}else{
+	}else{
 			alert("Don’t forget to report your activity tomorrow");
-			}
-				$('#txtDate').val("");
+	}
+	$('#txtDate').val("");
 	$('#txtStep').val("");
 	$('#textMsg').val("");
 	
-  });
+    });
  
 	}else{
 		
 			alert("You cant select future Date");
-		
-		
-		}
-		}else{
+			$('#txtDate').val("");
+    }
+
+}else{
 			var msg="Kindly fill the following fields:\n";
 			if(dateT==""){
 				msg=msg+"Reporting Day\n";
@@ -125,50 +130,42 @@ function sendEmail(){
 				
 			alert(msg);
 			
-			}
+}
 	
 	
 	}
    
     </script>
-
   <div data-role="header">
     <h1>eCoaching</h1>
   </div>
   <div data-role="content">
-  <center>
-    <h1>Enter Your Log</h1>
+    <center>
+      <h1>Enter Your Log</h1>
     </center>
     <div data-role="fieldcontain">
       <label for="date">What Day are you reporting for?</label>
       <input type="date" name="txtDate" id="txtDate" value=""  />
-</div>
-   <div data-role="fieldcontain">
+    </div>
+    <div data-role="fieldcontain">
       <label for="textinput">Please Enter Your Steps:</label>
-     <input type="number" pattern="[0-9]*" name="txtStep" id="txtStep" value=""  />
-     </div>
-   <div data-role="fieldcontain">
+      <input type="number" pattern="[0-9]*" name="txtStep" id="txtStep" value=""  />
+    </div>
+    <div data-role="fieldcontain">
       <label for="textarea">Message Box:</label>
       <textarea cols="40" rows="8" name="textMsg" id="textMsg"></textarea>
-</div>
-  
+    </div>
     <input type="button" value="Submit" onclick="sendEmail()" />
-    
-    
   </div>
-
-	
-	<div data-role="footer" class="nav-glyphish-example" data-position="fixed">
+  <div data-role="footer" class="nav-glyphish-example" data-position="fixed">
     <div data-role="navbar" class="nav-glyphish-example">
-    <ul>
+      <ul>
         <li><a href="log.html" id="log" data-icon="custom" class="ui-btn-active" >Log</a></li>
         <li><a href="setting.html" id="setting" data-icon="custom" >Setting</a></li>
-        
-    </ul>
+      </ul>
     </div>
-</div>
+  </div>
 </div>
 <script type="text/javascript" src="phonegap.js"></script>
-       
 </body>
 </html>
