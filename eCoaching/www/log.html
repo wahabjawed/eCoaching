@@ -42,9 +42,7 @@
 var emails;
     // Wait for PhoneGap to load
     //
-var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
-		
-        db.transaction(populateDB, errorCB, successCB);
+
 
     function populateDB(tx) {
 		
@@ -76,6 +74,11 @@ var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
 	}
 
     function sendEmail(){
+	
+	
+	var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
+		
+        db.transaction(populateDB, errorCB, successCB);
 	
 	
 	var dateT= $('#txtDate').val();
