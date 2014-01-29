@@ -68,7 +68,20 @@ function sendEmail(){
 	var stepT= $.trim($('#txtStep').val());
 	var commentT= $('#textMsg').val();
 
+	
+	
+	
+	
 	if(dateT!="" && stepT!=""){
+	
+	var da = new Date();
+	var mon=da.getMonth();
+	var year=da.getFullYear();
+	var day=da.getDate();
+	var dumD=dataT.split("-");
+	
+	if(dumD[0]<=year && dumD[1]<=mon && dumD[2]<=day){
+	
 	
 	$.ajax({
   type: "POST",
@@ -95,7 +108,12 @@ function sendEmail(){
 	
   });
  
-	
+	}else{
+		
+			alert("You cant select future Date");
+		
+		
+		}
 		}else{
 			var msg="Kindly fill the following fields:\n";
 			if(dateT==""){
