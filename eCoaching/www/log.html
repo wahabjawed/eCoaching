@@ -31,6 +31,8 @@
 	background-size: 28px 28px;
 }
 </style>
+
+
 </head>
 <body>
 <div data-role="page" id="page"> 
@@ -42,7 +44,9 @@
 var emails;
     // Wait for PhoneGap to load
     //
-
+var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
+		
+        db.transaction(populateDB, errorCB, successCB);
 
     function populateDB(tx) {
 		
@@ -56,7 +60,6 @@ var emails;
 		var len = results.rows.length;
        if(len>0){
 		 emails=(results.rows.item(0).data);
-		 alert(emails);
 		
 		   }
 	}
@@ -73,12 +76,11 @@ var emails;
   
 	}
 
+
+
+
     function sendEmail(){
 	
-	
-	var  db = window.openDatabase("Database", "1.0", "PhoneGap Demo", 200000);
-		
-        db.transaction(populateDB, errorCB, successCB);
 	
 	
 	var dateT= $('#txtDate').val();
